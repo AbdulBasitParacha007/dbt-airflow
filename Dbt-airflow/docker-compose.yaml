@@ -1,0 +1,13 @@
+version: '3'
+services:
+  airflow:
+    build: .
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://boltwire_administrator:12345@10.51.100.64[:5432]/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    volumes:
+      -./dag:/opt/airflow/dags
+      -./logs:/opt/airflow/logs
+    ports:
+      -5000:8080
+
